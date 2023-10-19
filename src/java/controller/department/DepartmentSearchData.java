@@ -35,16 +35,33 @@ public class DepartmentSearchData extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            DepartmentDAO departmentDAO = new DepartmentDAO();
+//            List<Department> search = departmentDAO.search();
+//
+//            String content = "";
+//            for (Department department : search) {
+//                content += "<tr>";
+//            }
+//
+//        }
+   try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             DepartmentDAO departmentDAO = new DepartmentDAO();
             List<Department> search = departmentDAO.search();
-
+            
             String content = "";
             for (Department department : search) {
                 content += "<tr>";
+                content += "<td>"+department.getCode()+"</td>";
+                content += "<td>"+department.getName()+"</td>";
+                content += "<td>"+department.getIsactive()+"</td>";
+                content += "<td><button class='btn btn-warning'>Update Data</button></td>";
+                content += "<td><button class='btn btn-success'><a href='DepartmentDelete?code="+department.getCode()+"'>Delete Data</a></button></td>";
+                content += "</tr>";
             }
-
+            out.print(content);
         }
     }
 

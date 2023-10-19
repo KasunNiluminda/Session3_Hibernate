@@ -1,5 +1,5 @@
 package model;
-// Generated Oct 7, 2023 5:18:37 PM by Hibernate Tools 4.3.1
+// Generated Oct 19, 2023 7:02:51 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,12 +26,13 @@ import javax.persistence.TemporalType;
 public class Employee  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String employeeno;
      private String firstname;
      private String lastname;
      private String mobileno;
      private String email;
+     private Double salary;
      private String createduser;
      private Date createddate;
      private String lastupdateduser;
@@ -39,17 +42,13 @@ public class Employee  implements java.io.Serializable {
     public Employee() {
     }
 
-	
-    public Employee(int id) {
-        this.id = id;
-    }
-    public Employee(int id, String employeeno, String firstname, String lastname, String mobileno, String email, String createduser, Date createddate, String lastupdateduser, Date lastupdateddatetime, Set<Login> logins) {
-       this.id = id;
+    public Employee(String employeeno, String firstname, String lastname, String mobileno, String email, Double salary, String createduser, Date createddate, String lastupdateduser, Date lastupdateddatetime, Set<Login> logins) {
        this.employeeno = employeeno;
        this.firstname = firstname;
        this.lastname = lastname;
        this.mobileno = mobileno;
        this.email = email;
+       this.salary = salary;
        this.createduser = createduser;
        this.createddate = createddate;
        this.lastupdateduser = lastupdateduser;
@@ -57,15 +56,15 @@ public class Employee  implements java.io.Serializable {
        this.logins = logins;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="id", unique=true, nullable=false)
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -117,6 +116,16 @@ public class Employee  implements java.io.Serializable {
     
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    
+    @Column(name="salary", precision=10)
+    public Double getSalary() {
+        return this.salary;
+    }
+    
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
 
     
