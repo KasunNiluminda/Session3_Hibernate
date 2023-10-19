@@ -43,6 +43,7 @@ public class CretaeUser extends HttpServlet {
 //            employee.createUser(employeeno);
 
 //            response.sendRedirect("EmployeeSearch.jsp");
+
         }
     }
 
